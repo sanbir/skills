@@ -9,7 +9,7 @@ description: Interact with Rocket Pool protocol contracts on Ethereum mainnet an
 
 ### Query rETH Exchange Rate
 ```bash
-cast call 0xae78736Cd615f374D3085123A210448E74Fc6393 "getExchangeRate()(uint256)" --rpc-url https://eth.llamarpc.com
+cast call 0xae78736Cd615f374D3085123A210448E74Fc6393 "getExchangeRate()(uint256)" --rpc-url https://ethereum-rpc.publicnode.com
 ```
 
 ### Deposit ETH to Mint rETH
@@ -19,19 +19,19 @@ cast send 0xCE15294273CFb9D9b628F4D61636623decDF4fdC "deposit()" --value 1ether 
 
 ### Check rETH Balance
 ```bash
-cast call 0xae78736Cd615f374D3085123A210448E74Fc6393 "balanceOf(address)(uint256)" $WALLET --rpc-url https://eth.llamarpc.com
+cast call 0xae78736Cd615f374D3085123A210448E74Fc6393 "balanceOf(address)(uint256)" $WALLET --rpc-url https://ethereum-rpc.publicnode.com
 ```
 
 ## Workflow
 
 1. Look up the contract address from `references/addresses.json`
 2. Find the function signature in the relevant domain reference file (see table below)
-3. Load the ABI from `assets/abis/<contractName>.json` if needed
+3. Use ABI files in `assets/abis/<contractName>.json` as a reference for function signatures and tuple layouts when needed
 4. Execute via `cast call` (read) or `cast send` (write), or via MCP `eth_call`/`eth_sendTransaction`
 
-For cast with full ABI (complex types like tuples):
+For calls that involve complex types (for example tuples), use the ABI JSON to derive the exact signature:
 ```bash
-cast call $ADDRESS --abi assets/abis/rocketDepositPool.json "getBalance()(uint256)" --rpc-url $RPC_URL
+cast call 0xCE15294273CFb9D9b628F4D61636623decDF4fdC "getBalance()(uint256)" --rpc-url $RPC_URL
 ```
 
 ## Domain Reference Files
@@ -49,8 +49,8 @@ cast call $ADDRESS --abi assets/abis/rocketDepositPool.json "getBalance()(uint25
 
 | Network | Chain ID | RPC | rocketStorage |
 |---|---|---|---|
-| Mainnet | 1 | `https://eth.llamarpc.com` | `0x1d8f8f00cfa6758d7bE78336684788Fb0ee0Fa46` |
-| Hoodi | 560048 | `https://hoodi.ethpandaops.io` | `0x594Fb75D3dc2DFa0150Ad03F99F97817747dd4E1` |
+| Mainnet | 1 | `https://ethereum-rpc.publicnode.com` | `0x1d8f8f00cfa6758d7bE78336684788Fb0ee0Fa46` |
+| Hoodi | 560048 | `https://rpc.hoodi.ethpandaops.io` | `0x594Fb75D3dc2DFa0150Ad03F99F97817747dd4E1` |
 
 All contract addresses per network are in `references/addresses.json`.
 
@@ -68,7 +68,9 @@ All contract addresses per network are in `references/addresses.json`.
 
 ## ABIs
 
-Full ABI JSON files for all mainnet contracts are in `assets/abis/`. Use when `cast` needs the full ABI for complex types:
+ABI JSON files are bundled for most mainnet contracts in `assets/abis/`.
+The following contracts are signature-only in this skill (no bundled ABI): `rocketNetworkRevenues`, `rocketDAOSecurityUpgrade`, `rocketMegapoolFactory`, `rocketMegapoolDelegate`, `rocketMegapoolManager`, `rocketMegapoolPenalties`.
+Use these files as signature references for `cast call` / `cast send`:
 ```bash
-cast call $ADDRESS --abi assets/abis/rocketTokenRETH.json "getExchangeRate()(uint256)" --rpc-url $RPC_URL
+cast call 0xae78736Cd615f374D3085123A210448E74Fc6393 "getExchangeRate()(uint256)" --rpc-url $RPC_URL
 ```

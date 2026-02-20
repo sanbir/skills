@@ -184,6 +184,7 @@ proposalReplace(address _existingAddr, string _newMemberId, address _newAddr)
 ### rocketDAOSecurityUpgrade (Saturn)
 
 Security council veto on oDAO upgrades.
+No ABI file is bundled for this contract in this skill. Use raw signatures with `cast call` / `cast send`.
 
 ```
 proposeVeto(string _proposalMessage, uint256 _upgradeProposalID) → uint256

@@ -237,6 +237,7 @@ getReduceBondValue(address _minipoolAddress) → uint256 [view]
 ## Megapool Contracts (Saturn upgrade)
 
 Megapools replace minipools as the new validator structure. A single megapool contract per node can manage multiple validators.
+No ABI files are bundled for `rocketMegapoolFactory`, `rocketMegapoolDelegate`, `rocketMegapoolManager`, or `rocketMegapoolPenalties` in this skill. Use raw signatures with `cast`.
 
 ### rocketMegapoolFactory
 ```

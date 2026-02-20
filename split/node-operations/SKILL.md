@@ -9,32 +9,32 @@ description: Interact with Rocket Pool node operator contracts — register node
 
 ### Check Node Count
 ```bash
-cast call 0xcf2d76A7499d3acB5A22ce83c027651e8d76e250 "getNodeCount()(uint256)" --rpc-url https://eth.llamarpc.com
+cast call 0xcf2d76A7499d3acB5A22ce83c027651e8d76e250 "getNodeCount()(uint256)" --rpc-url https://ethereum-rpc.publicnode.com
 ```
 
 ### Check If Address Is Registered Node
 ```bash
-cast call 0xcf2d76A7499d3acB5A22ce83c027651e8d76e250 "getNodeExists(address)(bool)" $NODE_ADDR --rpc-url https://eth.llamarpc.com
+cast call 0xcf2d76A7499d3acB5A22ce83c027651e8d76e250 "getNodeExists(address)(bool)" $NODE_ADDR --rpc-url https://ethereum-rpc.publicnode.com
 ```
 
 ### Check Staked RPL
 ```bash
-cast call 0xedFc7DCaE43fF954577a2875a9D805874490eE3E "getNodeStakedRPL(address)(uint256)" $NODE_ADDR --rpc-url https://eth.llamarpc.com
+cast call 0xedFc7DCaE43fF954577a2875a9D805874490eE3E "getNodeStakedRPL(address)(uint256)" $NODE_ADDR --rpc-url https://ethereum-rpc.publicnode.com
 ```
 
 ## Workflow
 
 1. Look up the contract address from `references/addresses.json`
 2. Find the function signature below
-3. Load the ABI from `assets/abis/<contractName>.json` if needed for complex types
+3. Load the ABI from `assets/abis/<contractName>.json` when available (Megapool contracts in this skill are signature-only)
 4. Execute via `cast call` (read) or `cast send` (write)
 
 ## Network Configuration
 
 | Network | Chain ID | RPC | rocketStorage |
 |---|---|---|---|
-| Mainnet | 1 | `https://eth.llamarpc.com` | `0x1d8f8f00cfa6758d7bE78336684788Fb0ee0Fa46` |
-| Hoodi | 560048 | `https://hoodi.ethpandaops.io` | `0x594Fb75D3dc2DFa0150Ad03F99F97817747dd4E1` |
+| Mainnet | 1 | `https://ethereum-rpc.publicnode.com` | `0x1d8f8f00cfa6758d7bE78336684788Fb0ee0Fa46` |
+| Hoodi | 560048 | `https://rpc.hoodi.ethpandaops.io` | `0x594Fb75D3dc2DFa0150Ad03F99F97817747dd4E1` |
 
 ## Architecture
 
@@ -295,6 +295,7 @@ getReduceBondValue(address _minipoolAddress) → uint256 [view]
 ## Megapool Contracts (Saturn)
 
 Megapools replace minipools as the new validator structure. A single megapool contract per node can manage multiple validators.
+No ABI files are bundled for `rocketMegapoolFactory`, `rocketMegapoolDelegate`, `rocketMegapoolManager`, `rocketMegapoolPenalties`, or `rocketMegapoolProxy` in this skill. Use the raw signatures below with `cast`.
 
 ### rocketMegapoolFactory
 

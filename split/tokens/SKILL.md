@@ -9,17 +9,17 @@ description: Interact with Rocket Pool token contracts — RPL (governance/staki
 
 ### Check RPL Balance
 ```bash
-cast call 0xD33526068D116cE69F19A9ee46F0bd304F21A51f "balanceOf(address)(uint256)" $WALLET --rpc-url https://eth.llamarpc.com
+cast call 0xD33526068D116cE69F19A9ee46F0bd304F21A51f "balanceOf(address)(uint256)" $WALLET --rpc-url https://ethereum-rpc.publicnode.com
 ```
 
 ### Check RPL Total Supply
 ```bash
-cast call 0xD33526068D116cE69F19A9ee46F0bd304F21A51f "totalSupply()(uint256)" --rpc-url https://eth.llamarpc.com
+cast call 0xD33526068D116cE69F19A9ee46F0bd304F21A51f "totalSupply()(uint256)" --rpc-url https://ethereum-rpc.publicnode.com
 ```
 
 ### Check Vault ETH Balance for a Contract
 ```bash
-cast call 0x3bDC69C4E5e13E52A65f5583c23EFB9636b469d6 "balanceOf(string)(uint256)" "rocketDepositPool" --rpc-url https://eth.llamarpc.com
+cast call 0x3bDC69C4E5e13E52A65f5583c23EFB9636b469d6 "balanceOf(string)(uint256)" "rocketDepositPool" --rpc-url https://ethereum-rpc.publicnode.com
 ```
 
 ## Workflow
@@ -33,8 +33,8 @@ cast call 0x3bDC69C4E5e13E52A65f5583c23EFB9636b469d6 "balanceOf(string)(uint256)
 
 | Network | Chain ID | RPC | rocketStorage |
 |---|---|---|---|
-| Mainnet | 1 | `https://eth.llamarpc.com` | `0x1d8f8f00cfa6758d7bE78336684788Fb0ee0Fa46` |
-| Hoodi | 560048 | `https://hoodi.ethpandaops.io` | `0x594Fb75D3dc2DFa0150Ad03F99F97817747dd4E1` |
+| Mainnet | 1 | `https://ethereum-rpc.publicnode.com` | `0x1d8f8f00cfa6758d7bE78336684788Fb0ee0Fa46` |
+| Hoodi | 560048 | `https://rpc.hoodi.ethpandaops.io` | `0x594Fb75D3dc2DFa0150Ad03F99F97817747dd4E1` |
 
 ## Architecture
 

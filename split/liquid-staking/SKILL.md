@@ -9,7 +9,7 @@ description: Interact with Rocket Pool liquid staking contracts — deposit ETH 
 
 ### Query rETH Exchange Rate
 ```bash
-cast call 0xae78736Cd615f374D3085123A210448E74Fc6393 "getExchangeRate()(uint256)" --rpc-url https://eth.llamarpc.com
+cast call 0xae78736Cd615f374D3085123A210448E74Fc6393 "getExchangeRate()(uint256)" --rpc-url https://ethereum-rpc.publicnode.com
 ```
 
 ### Deposit ETH to Mint rETH
@@ -19,7 +19,7 @@ cast send 0xCE15294273CFb9D9b628F4D61636623decDF4fdC "deposit()" --value 1ether 
 
 ### Check rETH Balance
 ```bash
-cast call 0xae78736Cd615f374D3085123A210448E74Fc6393 "balanceOf(address)(uint256)" $WALLET --rpc-url https://eth.llamarpc.com
+cast call 0xae78736Cd615f374D3085123A210448E74Fc6393 "balanceOf(address)(uint256)" $WALLET --rpc-url https://ethereum-rpc.publicnode.com
 ```
 
 ## Workflow
@@ -33,8 +33,8 @@ cast call 0xae78736Cd615f374D3085123A210448E74Fc6393 "balanceOf(address)(uint256
 
 | Network | Chain ID | RPC | rocketStorage |
 |---|---|---|---|
-| Mainnet | 1 | `https://eth.llamarpc.com` | `0x1d8f8f00cfa6758d7bE78336684788Fb0ee0Fa46` |
-| Hoodi | 560048 | `https://hoodi.ethpandaops.io` | `0x594Fb75D3dc2DFa0150Ad03F99F97817747dd4E1` |
+| Mainnet | 1 | `https://ethereum-rpc.publicnode.com` | `0x1d8f8f00cfa6758d7bE78336684788Fb0ee0Fa46` |
+| Hoodi | 560048 | `https://rpc.hoodi.ethpandaops.io` | `0x594Fb75D3dc2DFa0150Ad03F99F97817747dd4E1` |
 
 ## Architecture
 

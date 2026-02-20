@@ -9,17 +9,17 @@ description: Interact with Rocket Pool rewards contracts — query reward cycles
 
 ### Check Current Reward Index
 ```bash
-cast call 0xCba5951fc706Fc783b7C142DaE8576Ebe29c41FD "getRewardIndex()(uint256)" --rpc-url https://eth.llamarpc.com
+cast call 0xCba5951fc706Fc783b7C142DaE8576Ebe29c41FD "getRewardIndex()(uint256)" --rpc-url https://ethereum-rpc.publicnode.com
 ```
 
 ### Check Pending RPL Rewards
 ```bash
-cast call 0xCba5951fc706Fc783b7C142DaE8576Ebe29c41FD "getPendingRPLRewards()(uint256)" --rpc-url https://eth.llamarpc.com
+cast call 0xCba5951fc706Fc783b7C142DaE8576Ebe29c41FD "getPendingRPLRewards()(uint256)" --rpc-url https://ethereum-rpc.publicnode.com
 ```
 
 ### Check Smoothing Pool Balance
 ```bash
-cast balance 0xd4E96eF8eee8678dBFf4d535E033Ed1a4F7605b7 --rpc-url https://eth.llamarpc.com
+cast balance 0xd4E96eF8eee8678dBFf4d535E033Ed1a4F7605b7 --rpc-url https://ethereum-rpc.publicnode.com
 ```
 
 ## Workflow
@@ -33,8 +33,8 @@ cast balance 0xd4E96eF8eee8678dBFf4d535E033Ed1a4F7605b7 --rpc-url https://eth.ll
 
 | Network | Chain ID | RPC | rocketStorage |
 |---|---|---|---|
-| Mainnet | 1 | `https://eth.llamarpc.com` | `0x1d8f8f00cfa6758d7bE78336684788Fb0ee0Fa46` |
-| Hoodi | 560048 | `https://hoodi.ethpandaops.io` | `0x594Fb75D3dc2DFa0150Ad03F99F97817747dd4E1` |
+| Mainnet | 1 | `https://ethereum-rpc.publicnode.com` | `0x1d8f8f00cfa6758d7bE78336684788Fb0ee0Fa46` |
+| Hoodi | 560048 | `https://rpc.hoodi.ethpandaops.io` | `0x594Fb75D3dc2DFa0150Ad03F99F97817747dd4E1` |
 
 ## Architecture
 

@@ -14,27 +14,27 @@ Rocket Pool has three governance bodies:
 
 ### Check Total pDAO Proposals
 ```bash
-cast call 0x2D627A50Dc1C4EDa73E42858E8460b0eCF300b25 "getTotal()(uint256)" --rpc-url https://eth.llamarpc.com
+cast call 0x2D627A50Dc1C4EDa73E42858E8460b0eCF300b25 "getTotal()(uint256)" --rpc-url https://ethereum-rpc.publicnode.com
 ```
 
 ### Check Proposal State
 ```bash
-cast call 0x2D627A50Dc1C4EDa73E42858E8460b0eCF300b25 "getState(uint256)(uint8)" 1 --rpc-url https://eth.llamarpc.com
+cast call 0x2D627A50Dc1C4EDa73E42858E8460b0eCF300b25 "getState(uint256)(uint8)" 1 --rpc-url https://ethereum-rpc.publicnode.com
 ```
 
 ## Workflow
 
 1. Look up the contract address from `references/addresses.json`
 2. Find the function signature below
-3. Load the ABI from `assets/abis/<contractName>.json` if needed for complex types
+3. Load the ABI from `assets/abis/<contractName>.json` when available (some Saturn-era contracts in this skill are signature-only)
 4. Execute via `cast call` (read) or `cast send` (write)
 
 ## Network Configuration
 
 | Network | Chain ID | RPC | rocketStorage |
 |---|---|---|---|
-| Mainnet | 1 | `https://eth.llamarpc.com` | `0x1d8f8f00cfa6758d7bE78336684788Fb0ee0Fa46` |
-| Hoodi | 560048 | `https://hoodi.ethpandaops.io` | `0x594Fb75D3dc2DFa0150Ad03F99F97817747dd4E1` |
+| Mainnet | 1 | `https://ethereum-rpc.publicnode.com` | `0x1d8f8f00cfa6758d7bE78336684788Fb0ee0Fa46` |
+| Hoodi | 560048 | `https://rpc.hoodi.ethpandaops.io` | `0x594Fb75D3dc2DFa0150Ad03F99F97817747dd4E1` |
 
 ## Architecture
 
@@ -145,10 +145,10 @@ bootstrapSettingAddress(string _settingContractName, string _settingPath, addres
 ### rocketDAOProtocolActions
 
 ```
-actionSettingUint(string _settingContractName, string _settingPath, uint256 _value)
-actionSettingBool(string _settingContractName, string _settingPath, bool _value)
-actionSettingAddress(string _settingContractName, string _settingPath, address _value)
+version() → uint8 [view]
 ```
+
+The bundled `rocketDAOProtocolActions` ABI is minimal (version-only). For setting updates, use `rocketDAOProtocolProposals` proposal payload methods.
 
 ## Oracle DAO (oDAO)
 
@@ -238,6 +238,8 @@ proposalReplace(address _existingAddr, string _newMemberId, address _newAddr)
 ```
 
 ### rocketDAOSecurityUpgrade (Saturn)
+
+No ABI file is bundled for this contract in this skill. Use the raw signatures below with `cast call` / `cast send`.
 
 ```
 proposeVeto(string _proposalMessage, uint256 _upgradeProposalID) → uint256

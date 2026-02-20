@@ -9,32 +9,32 @@ description: Interact with Rocket Pool network infrastructure contracts — Rock
 
 ### Resolve Contract Address via RocketStorage
 ```bash
-cast call 0x1d8f8f00cfa6758d7bE78336684788Fb0ee0Fa46 "getAddress(bytes32)(address)" $(cast keccak "contract.addressrocketDepositPool") --rpc-url https://eth.llamarpc.com
+cast call 0x1d8f8f00cfa6758d7bE78336684788Fb0ee0Fa46 "getAddress(bytes32)(address)" $(cast keccak "contract.addressrocketDepositPool") --rpc-url https://ethereum-rpc.publicnode.com
 ```
 
 ### Check Total ETH Balance
 ```bash
-cast call 0x1D9F14C6Bfd8358b589964baD8665AdD248E9473 "getTotalETHBalance()(uint256)" --rpc-url https://eth.llamarpc.com
+cast call 0x1D9F14C6Bfd8358b589964baD8665AdD248E9473 "getTotalETHBalance()(uint256)" --rpc-url https://ethereum-rpc.publicnode.com
 ```
 
 ### Check RPL Price
 ```bash
-cast call 0x25E54Bf48369b8FB25bB79d3a3Ff7F3BA448E382 "getRPLPrice()(uint256)" --rpc-url https://eth.llamarpc.com
+cast call 0x25E54Bf48369b8FB25bB79d3a3Ff7F3BA448E382 "getRPLPrice()(uint256)" --rpc-url https://ethereum-rpc.publicnode.com
 ```
 
 ## Workflow
 
 1. Look up the contract address from `references/addresses.json`
 2. Find the function signature below
-3. Load the ABI from `assets/abis/<contractName>.json` if needed for complex types
+3. Load the ABI from `assets/abis/<contractName>.json` when available (some Saturn-era contracts in this skill are signature-only)
 4. Execute via `cast call` (read) or `cast send` (write)
 
 ## Network Configuration
 
 | Network | Chain ID | RPC | rocketStorage |
 |---|---|---|---|
-| Mainnet | 1 | `https://eth.llamarpc.com` | `0x1d8f8f00cfa6758d7bE78336684788Fb0ee0Fa46` |
-| Hoodi | 560048 | `https://hoodi.ethpandaops.io` | `0x594Fb75D3dc2DFa0150Ad03F99F97817747dd4E1` |
+| Mainnet | 1 | `https://ethereum-rpc.publicnode.com` | `0x1d8f8f00cfa6758d7bE78336684788Fb0ee0Fa46` |
+| Hoodi | 560048 | `https://rpc.hoodi.ethpandaops.io` | `0x594Fb75D3dc2DFa0150Ad03F99F97817747dd4E1` |
 
 ## Architecture
 
@@ -208,6 +208,7 @@ cast call $NET_VOTING "getCurrentDelegate(address)(address)" $NODE_ADDR --rpc-ur
 ## rocketNetworkRevenues (Saturn)
 
 Revenue splitting between node operators, voters, protocol DAO, and rETH holders.
+No ABI file is bundled for this contract in this skill. Use the raw signatures below with `cast call`.
 
 ### Functions
 
@@ -242,3 +243,4 @@ getProtocolDAOShare() → uint256 [view]
 ## rocketNetworkSnapshotsTime
 
 Timestamp-based snapshot lookup.
+No ABI file is bundled for this contract in this skill.

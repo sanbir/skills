@@ -184,6 +184,7 @@ cast call $NET_VOTING "getCurrentDelegate(address)(address)" $NODE_ADDR --rpc-ur
 ## rocketNetworkRevenues (Saturn)
 
 Revenue splitting between node operators, voters, protocol DAO, and rETH holders.
+No ABI file is bundled for this contract in this skill. Use raw signatures with `cast call`.
 
 ```
 getCurrentNodeShare() → uint256 [view]
