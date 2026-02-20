@@ -1,10 +1,21 @@
 # Rocket Pool Skills
 
-Claude Code skills for interacting with Rocket Pool smart contracts via `cast` (Foundry) or Ethereum MCP tools.
+AI agent skill bundles for interacting with Rocket Pool smart contracts via `cast` (Foundry) or Ethereum MCP tools.
 
 ## Usage
 
-Install a skill by adding it to your project's `.claude/settings.json`:
+Load one or more skill directories into your AI agent's local skills/instructions mechanism.
+Each skill directory includes a `SKILL.md` plus supporting references and ABI files.
+
+Use `all-in-one/` when you want full protocol coverage in one bundle, or load one or more domain bundles from `split/` for narrower context.
+
+If your agent does not support local skill loading, use the same folders as prompt context:
+
+1. Provide the relevant `SKILL.md`
+2. Keep `references/addresses.json` available
+3. Keep `assets/abis/` available for function signatures and tuple layouts
+
+Example agent config format (adjust to your tool):
 
 ```json
 {
@@ -14,7 +25,7 @@ Install a skill by adding it to your project's `.claude/settings.json`:
 }
 ```
 
-Or install individual domain skills from `split/`:
+Example using split bundles:
 
 ```json
 {
@@ -25,7 +36,74 @@ Or install individual domain skills from `split/`:
 }
 ```
 
-Each skill provides contract addresses, function signatures, ABI files, and cast examples for mainnet and Hoodi testnet.
+Each skill provides contract addresses, function signatures, ABI files, and `cast` examples for mainnet and Hoodi testnet.
+
+## Examples
+
+Set environment variables once:
+
+```bash
+export RPC_URL="https://ethereum-rpc.publicnode.com"
+export WALLET="0xYourWallet"
+export PK="0xYourPrivateKey"
+```
+
+### Example 1: Read rETH exchange rate (`all-in-one/`)
+
+Prompt your agent:
+
+```text
+Using the Rocket Pool all-in-one skill, get the current rETH exchange rate on mainnet with cast.
+```
+
+Typical command:
+
+```bash
+cast call 0xae78736Cd615f374D3085123A210448E74Fc6393 "getExchangeRate()(uint256)" --rpc-url $RPC_URL
+```
+
+### Example 2: Mint rETH (`split/liquid-staking/`)
+
+Prompt your agent:
+
+```text
+Using the liquid-staking skill, mint 1 ETH worth of rETH and show the exact cast command.
+```
+
+Typical command:
+
+```bash
+cast send 0xCE15294273CFb9D9b628F4D61636623decDF4fdC "deposit()" --value 1ether --rpc-url $RPC_URL --private-key $PK
+```
+
+### Example 3: Check node RPL stake (`split/node-operations/`)
+
+Prompt your agent:
+
+```text
+Using the node-operations skill, check the RPL stake for this node address: 0xNodeAddress.
+```
+
+Typical command pattern:
+
+```bash
+cast call <rocketNodeStaking_address> "getNodeRPLStake(address)(uint256)" 0xNodeAddress --rpc-url $RPC_URL
+```
+
+### Example 4: Pull ABI-aware signature help
+
+Prompt your agent:
+
+```text
+Using the relevant Rocket Pool skill, find the exact function signature for a call that takes a tuple argument and generate the cast command.
+```
+
+Expected behavior:
+
+1. Agent reads `SKILL.md` for workflow guidance
+2. Agent looks up contract address in `references/addresses.json`
+3. Agent uses `assets/abis/*.json` to derive the exact tuple signature
+4. Agent returns a concrete `cast call` or `cast send` command
 
 ## Structure
 
@@ -35,11 +113,11 @@ A single monolithic skill covering all ~54 Rocket Pool contracts across every do
 
 - 53 ABI files
 - All contract addresses (mainnet + Hoodi)
-- Separate reference files per domain linked from the main SKILL.md
+- Separate reference files per domain linked from the main `SKILL.md`
 
 ### `split/`
 
-Six self-contained skills, one per domain. Each has its own SKILL.md with inlined function signatures, a filtered addresses.json, and only the relevant ABIs. Use these when you only need specific protocol functionality and want to keep context lean.
+Six self-contained skills, one per domain. Each has its own `SKILL.md` with inlined function signatures, a filtered `addresses.json`, and only the relevant ABIs. Use these when you only need specific protocol functionality and want to keep context lean.
 
 | Skill | Contracts | ABIs | Covers |
 |-------|-----------|------|--------|
@@ -52,5 +130,5 @@ Six self-contained skills, one per domain. Each has its own SKILL.md with inline
 
 ### When to use which
 
-- **All-in-one** — you're exploring the protocol, don't know which domain you need, or regularly work across multiple domains
-- **Split** — you know exactly what you're doing (e.g., only liquid staking integrations) and want faster, more focused responses
+- **All-in-one**: you're exploring the protocol, don't know which domain you need, or regularly work across multiple domains
+- **Split**: you know exactly what you're doing (for example only liquid staking integrations) and want faster, more focused responses
