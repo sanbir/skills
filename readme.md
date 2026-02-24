@@ -7,7 +7,7 @@
 AI agent skill bundles for interacting with Rocket Pool smart contracts via `cast` (Foundry) or Ethereum MCP tools.
 
 > [!WARNING]
-> _These skills are provided to be used at your own risk. Exposing a private key or mnemonic phrase to an AI agent is not exercising proper risk management & putting your funds at risk. This repository is provided for informational and educational purposes only and is used entirely at your own risk. The authors and contributors assume no liability for any damages, losses, or legal claims arising from its use._
+> _These skills are provided to be used at your own risk. Exposing a private key or mnemonic phrase to an AI agent is not exercising proper risk management & puts your funds at risk. This repository is provided for informational and educational purposes only and is used entirely at your own risk. The authors and contributors assume no liability for any damages, losses, or legal claims arising from its use._
 
 ## Usage
 
