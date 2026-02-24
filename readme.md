@@ -1,6 +1,14 @@
+<picture>
+  <img alt="Rocket Pool - Decentralised Ethereum Staking Protocol" src="https://raw.githubusercontent.com/rocket-pool/.github/main/assets/logo.svg" width="auto" height="120">
+</picture>
+
 # Rocket Pool Skills
 
 AI agent skill bundles for interacting with Rocket Pool smart contracts via `cast` (Foundry) or Ethereum MCP tools.
+
+#### _Disclaimer_
+
+_These skills are provided to be used at your own risk. Exposing a private key or mnemonic phrase to an AI agent is not exercising proper risk management. This repository is provided for informational and educational purposes only and is used entirely at your own risk. The authors and contributors assume no liability for any damages, losses, or legal claims arising from its use._
 
 ## Usage
 
@@ -19,9 +27,7 @@ Example agent config format (adjust to your tool):
 
 ```json
 {
-  "skills": [
-    "/path/to/rocketpool-skills/all-in-one"
-  ]
+  "skills": ["/path/to/rocketpool-skills/all-in-one"]
 }
 ```
 
@@ -119,14 +125,14 @@ A single monolithic skill covering all ~54 Rocket Pool contracts across every do
 
 Six self-contained skills, one per domain. Each has its own `SKILL.md` with inlined function signatures, a filtered `addresses.json`, and only the relevant ABIs. Use these when you only need specific protocol functionality and want to keep context lean.
 
-| Skill | Contracts | ABIs | Covers |
-|-------|-----------|------|--------|
-| `liquid-staking` | 2 | 2 | rETH minting/burning, deposit pool, exchange rates |
-| `node-operations` | 18 | 12 | Node registration, minipools, megapools, RPL staking, bond reduction |
-| `governance` | 27 | 25 | pDAO proposals/voting, oDAO membership, security council, all DAO settings |
-| `network` | 10 | 8 | RocketStorage registry, balances, prices, fees, snapshots, voting delegation |
-| `rewards` | 5 | 5 | Reward cycles, Merkle claims, smoothing pool, treasury |
-| `tokens` | 3 | 3 | RPL ERC-20, inflation, vault, L2 token addresses |
+| Skill             | Contracts | ABIs | Covers                                                                       |
+| ----------------- | --------- | ---- | ---------------------------------------------------------------------------- |
+| `liquid-staking`  | 2         | 2    | rETH minting/burning, deposit pool, exchange rates                           |
+| `node-operations` | 18        | 12   | Node registration, minipools, megapools, RPL staking, bond reduction         |
+| `governance`      | 27        | 25   | pDAO proposals/voting, oDAO membership, security council, all DAO settings   |
+| `network`         | 10        | 8    | RocketStorage registry, balances, prices, fees, snapshots, voting delegation |
+| `rewards`         | 5         | 5    | Reward cycles, Merkle claims, smoothing pool, treasury                       |
+| `tokens`          | 3         | 3    | RPL ERC-20, inflation, vault, L2 token addresses                             |
 
 ### When to use which
 
